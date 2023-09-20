@@ -1,2 +1,32 @@
 server/node_modules/
-node_modules/
+# Dossiers et fichiers générés par Angular CLI
+/dist/
+/node_modules/
+/e2e/
+
+# Fichiers de configuration générés par Angular CLI
+/angular.json
+/.angular_cli.json
+/tsconfig.json
+/tsconfig.app.json
+/tsconfig.spec.json
+
+# Fichiers de configuration générés par Node.js
+/package-lock.json
+/npm-debug.log
+/yarn-error.log
+
+# Dossiers de caches et de fichiers temporaires
+/.npm
+/.yarn
+/.pnp
+.pnp.js
+.pnp.js.map
+/.pnp.js
+.pnp.cjs
+.pnp.cjs.map
+/.pnp.cjs
+
+# Fichiers de sauvegarde de l'éditeur
+*~
+*.swp
