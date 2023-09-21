@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user/user';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -15,11 +16,11 @@ export class LoginViewComponent {
 
 
   loginForm = new FormGroup({
-    pseudo : new FormControl('',Validators.required),
-    password : new FormControl('',Validators.required)
+    email : new FormControl('',Validators.required),
+    ticket : new FormControl('',Validators.required)
   },Validators.required)
 
-  constructor(){
+  constructor(private authService : AuthService){
 
   }
 
@@ -28,18 +29,24 @@ export class LoginViewComponent {
     if(this.loginForm.valid){
 
       const user : User = {
-        email : 'mail',
-        ticket : 'ticket',
+        email : this.loginForm.value.email,
+        ticket : this.loginForm.value.ticket,
         firstName : '',
         lastName : ''
       }    
   
-      // this.authService.login(user).subscribe({
-      //   next : () => {
-
-      //   }
-      //   }
-      // )
+      this.authService.login(user).subscribe({
+        next : (user) => {
+          this.authService.user = user
+          console.log("connected");
+          
+        },
+        error : (err)=> {
+          console.log(err);
+          
+        }
+        }
+      )
     }else{
       this.loginMessage = "Form not valid"
     }

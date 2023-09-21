@@ -30,3 +30,4 @@ server/node_modules/
 # Fichiers de sauvegarde de l'éditeur
 *~
 *.swp
+*.pack
