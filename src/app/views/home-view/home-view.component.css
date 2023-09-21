@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    justify-content: space-between; /* Aligne les cartes avec un espacement égal entre elles */
+    padding: 100px; /* Espacement entre le bord du conteneur et les cartes */
+    flex-wrap: wrap; /* Permet aux cartes de passer à la ligne si nécessaire */
+    justify-content: space-between; /* Aligne les cartes avec un espacement égal entre elles horizontalement */
+  }
+  
+  .carte {
+    flex: 0 0 calc(33.33% - 20px); /* Répartit les cartes sur une ligne, avec 20px d'espacement entre elles */
+    /* Ajustez la largeur et les marges en fonction de votre mise en page */
+    margin-right: 20px; /* Espacement entre les cartes (ajustez selon vos besoins) */
+  }
+  
+  /* La dernière carte de chaque ligne n'aura pas de marge droite */
+  .carte:nth-child(3n) {
+    margin-right: 0;
+  }
+  
+  /* Assurez-vous que les marges extérieures du conteneur sont nulles pour aligner les cartes avec le bord de la page */
+  body {
+    margin: 0;
+    padding: 0;
+  }
