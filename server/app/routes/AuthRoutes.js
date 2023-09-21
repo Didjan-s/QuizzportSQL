@@ -4,6 +4,24 @@ client = require("../pgclient")
 
 const router = express.Router()
 
+router.get('/checkUser', (req,res) => {
+    try {
+        const token = req.cookies.Session
+
+        if(jwt.verify(token,process.env.JWTSECRET)){
+
+            res.status(200).send(true)
+    
+        }
+
+    } catch (error) {
+
+        res.send(false)
+
+    }
+
+})
+
 router.post("/login",async (request,response) => {
 
     const {email, ticket} = request.body
@@ -57,5 +75,17 @@ function containOnlyNumbers(ticket) {
     return intValue >= -2147483648 && intValue <= 2147483647;
 }
   
+router.get('/logout', async (req,res) =>{
+
+    try {
+        res.clearCookie('Session'),
+    
+        res.send()
+    } catch (error) {
+        res.status(500).send("Server error")
+
+    }
+
+})
 
 module.exports = router

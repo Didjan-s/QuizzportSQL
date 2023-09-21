@@ -26,9 +26,9 @@
                     </button>
                 </div>
 
-                <!-- <div class="col-12">
-                    <a routerLink="/register" class="text-decoration-none">No account yet ?</a>
-                </div> -->
+                <div *ngIf="loginMessage" class="col-12 text-danger">
+                    <p>{{loginMessage}}</p>
+                </div>
 
             </form>
 

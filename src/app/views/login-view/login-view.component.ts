@@ -14,13 +14,12 @@ export class LoginViewComponent {
 
   loginMessage : string | undefined
 
-
   loginForm = new FormGroup({
     email : new FormControl('',Validators.required),
     ticket : new FormControl('',Validators.required)
   },Validators.required)
 
-  constructor(private authService : AuthService){
+  constructor(private authService : AuthService, private router : Router){
 
   }
 
@@ -36,13 +35,12 @@ export class LoginViewComponent {
       }    
   
       this.authService.login(user).subscribe({
-        next : (user) => {
-          this.authService.user = user
-          console.log("connected");
-          
+        next : () => {
+          this.router.navigate(['home'])
+          this.loginMessage = ''
         },
         error : (err)=> {
-          console.log(err);
+          this.loginMessage = err.error.message
           
         }
         }

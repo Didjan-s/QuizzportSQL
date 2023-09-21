@@ -8,13 +8,15 @@ import { LoginViewComponent } from './views/login-view/login-view.component';
 import { HomeViewComponent } from './views/home-view/home-view.component';
 import { QuizzViewComponent } from './views/quizz-view/quizz-view.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NavbarComponent } from './shared/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginViewComponent,
     HomeViewComponent,
-    QuizzViewComponent
+    QuizzViewComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
