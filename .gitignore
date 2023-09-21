@@ -26,6 +26,8 @@ server/node_modules/
 .pnp.cjs
 .pnp.cjs.map
 /.pnp.cjs
+.angular
+.vscode
 
 # Fichiers de sauvegarde de l'éditeur
 *~
