@@ -1,8 +1,8 @@
 export class User {
-    firstName : string
-    lastName : string
-    email : string 
-    ticket : string 
+    firstName : string | undefined | null
+    lastName : string |undefined | null
+    email : string  | undefined | null
+    ticket : string | undefined | null
 
     constructor(){
         this.firstName = ""

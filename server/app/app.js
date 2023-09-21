@@ -11,8 +11,7 @@ const authRoute = require('./routes/AuthRoutes')
 const cookieParser = require("cookie-parser")
 
 //bdd
-const {Client} = require('pg')
-client = new Client(process.env.BDDURL)
+client = require("./pgclient")
 
 // Express
 const express = require('express')
