@@ -1,5 +1,8 @@
 import { Component, OnInit  } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { ProfilService } from 'src/app/services/profil.service';
+import { User } from 'src/app/models/user/user';
 
 @Component({
   selector: 'app-profil',
@@ -7,19 +10,29 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./profil.component.css']
 })
 export class ProfilComponent implements OnInit {
-  client: any = {}; // Initialisez un objet vide pour stocker les données du client
+  //client: User = new User; // Initialisez un objet vide pour stocker les données du client
+  profil: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private profilService: ProfilService, private route : ActivatedRoute) { }
 
   ngOnInit(): void {
-    // Remplacez l'URL par celle de votre endpoint backend pour récupérer les informations du client.
-    this.http.get<any>('http://localhost:3000/api/client/1').subscribe(
-      (data) => {
-        this.client = data; // Stockez les données du client dans l'objet client
+  
+    let client = this.profilService.getProfil(this.route.snapshot.paramMap.get('id')).subscribe(
+      (données) => {
+        // Utilisez les données ici
+        this.profil = données;
       },
-      (error) => {
-        console.error('Erreur lors de la récupération des informations du client :', error);
+      erreur => {
+        // Gérez les erreurs ici
+        console.error('Erreur :', erreur);
+      },
+      () => {
+        // Le flux est complet, traitez-le si nécessaire
+        console.log('Le flux est complet.');
       }
     );
+
   }
+
+  
 }

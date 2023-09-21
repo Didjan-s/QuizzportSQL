@@ -6,14 +6,16 @@
 </head>
 <body>
     <header>
-        <h1>Profil de [Nom de l'utilisateur]</h1>
+        <h1>Profil de {{profil.last_name}} {{profil.first_name}}</h1>
     </header>
 
     <section>
         <h2>Informations personnelles</h2>
-        <p>Nom: [Nom de l'utilisateur]</p>
-        <p>Prénom: [Prénom de l'utilisateur]</p>
+        <p>Nom: {{profil.last_name}}</p>
+        <p>Prénom: {{profil.first_name}}</p>
     </section>
+
+    <button></button>
 
     <section>
         <h2>Quizz Répondus</h2>

@@ -14,3 +14,4 @@ export class AuthService {
     return this.http.post<User>('http://localhost:3000/api/login',user,{withCredentials : true})
   }
 }
+

@@ -1,10 +1,6 @@
 const express = require('express')
 const jwt = require("jsonwebtoken")
-<<<<<<< HEAD
-import {client} from 'app.js' 
-=======
 client = require("../pgclient")
->>>>>>> master
 
 const router = express.Router()
 
@@ -46,30 +42,50 @@ router.post("/login",async (request,response) => {
 
 })
 
-<<<<<<< HEAD
-router.post("/api/profil/:id",(request,response) => {
+router.get("/profil/:id",(request,response) => {
 
-    const userId = req.params.id;
-    const query = 'SELECT * FROM utilisateurs WHERE id = $1';
+    const userId = request.query.id;
+    const query = 'SELECT * FROM public.user WHERE id = $1';
 
     client.query(query, [userId], (error, result) => {
     if (error) {
       console.error('Erreur lors de la requête :', error);
-      res.status(500).json({ error: "Erreur lors de la récupération du profil de l'utilisateur." });
+      response.status(500).json({ error: "Erreur lors de la récupération du profil de l'utilisateur." });
     } else {
       if (result.rows.length === 0) {
-        res.status(404).json({ message: 'Utilisateur non trouvé.' });
+        response.status(404).json({ message: 'Utilisateur non trouvé.' });
       } else {
         const user = result.rows[0];
-        res.json(user);
+        response.json(user);
       }
     }
 
 })
 })
 
+router.post("/profil",(request,response) => {
 
-=======
+  const user = jwt.decode(request.cookies.Session,process.env.JWTSECRET);
+  console.log(user);
+  const query = 'SELECT * FROM public.user WHERE id = $';
+
+  client.query(query, [user.id], (error, result) => {
+  if (error) {
+    console.error('Erreur lors de la requête :', error);
+    response.status(500).json({ error: "Erreur lors de la récupération du profil de l'utilisateur." });
+  } else {
+    if (result.rows.length === 0) {
+      response.status(404).json({ message: 'Utilisateur non trouvé.' });
+    } else {
+      const user = result.rows[0];
+      response.json(user);
+    }
+  }
+
+})
+})
+
+
 function isEmail(email) {
     const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return regex.test(email);
@@ -85,6 +101,5 @@ function containOnlyNumbers(ticket) {
     return intValue >= -2147483648 && intValue <= 2147483647;
 }
   
->>>>>>> master
 
 module.exports = router
