@@ -29,6 +29,7 @@ router.post("/api/profil/:id",(request,response) => {
     }
 
 })
+})
 
 
 
